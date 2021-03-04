@@ -9,7 +9,7 @@ public class CommandHandler : MonoBehaviour
     [SerializeField]
     private RectTransform _commandsContainer = default;
     [SerializeField]
-    private Text _inputCommand;
+    private InputField _inputCommand;
 
     private Commands Commands = default;
 
@@ -50,7 +50,7 @@ public class CommandHandler : MonoBehaviour
     {
         GameObject newItem = Instantiate(_item, _commandsContainer);
         newItem.GetComponentInChildren<Text>().text = CommandText;
-        _inputCommand.text = null;
+        _inputCommand.text = string.Empty;
     }
 
     private void InvokeCommand(string name, object[] args)

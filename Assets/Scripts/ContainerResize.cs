@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ContainerResize : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler, IEndDragHandler
+public class ContainerResize : MonoBehaviour, IPointerDownHandler, IDragHandler, IEndDragHandler
 {
     [SerializeField]
     private RectTransform _container = default;
@@ -54,11 +54,5 @@ public class ContainerResize : MonoBehaviour, IPointerDownHandler, IDragHandler,
             _container.sizeDelta = new Vector2(0, 1840);
             _self.sizeDelta = new Vector2(0, 80);
         }
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-
-        _commandObjects.SetActive(true);
     }
 }
