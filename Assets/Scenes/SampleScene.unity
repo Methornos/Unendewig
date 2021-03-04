@@ -554,13 +554,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1101237926}
   m_TextComponent: {fileID: 1139913080}
   m_Placeholder: {fileID: 572789019}
-  m_ContentType: 4
+  m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 1
+  m_KeyboardType: 6
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 3
+  m_CharacterValidation: 4
   m_CharacterLimit: 20
   m_OnEndEdit:
     m_PersistentCalls:
@@ -951,13 +951,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b967adbf258154c4b9cf0d25c6ee8e85, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
