@@ -11,7 +11,7 @@ public class Commands : MonoBehaviour
         _handler = GetComponent<CommandHandler>();
     }
 
-    public void Attack()
+    public void attack()
     {
         _handler.CommandText = "You: Attacked kogo blyat";
     }

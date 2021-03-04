@@ -32,24 +32,32 @@ public class CommandHandler : MonoBehaviour
     {
         try
         {
-            MethodInfo command = GetType().GetMethod(CommandName);
-            command.Invoke(Commands, null);
+            FormatCommand();
+            InvokeCommand(CommandName, null);
             CreateMessage();
         }
         catch
         {
-            Debug.LogError("Incorrect command!");
+            
         }
     }
 
-    private void InvokeMethod(string name, List<object> args)
+    private void FormatCommand()
     {
-
+        CommandName = CommandName.Trim();
+        CommandName = CommandName.ToLower();
     }
 
     private void CreateMessage()
     {
         GameObject newItem = Instantiate(_item, _commandsContainer);
         newItem.GetComponentInChildren<Text>().text = CommandText;
+        _inputCommand.text = null;
+    }
+
+    private void InvokeCommand(string name, object[] args)
+    {
+        MethodInfo command = Commands.GetType().GetMethod(CommandName);
+        command.Invoke(Commands, null);
     }
 }
