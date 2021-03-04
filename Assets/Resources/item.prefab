@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 5673468123047323031}
   - component: {fileID: 271541628}
   - component: {fileID: 271541631}
+  - component: {fileID: 1724166597}
   m_Layer: 5
   m_Name: item
   m_TagString: Untagged
@@ -251,3 +252,19 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+--- !u!111 &1724166597
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673468123047323029}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: b2ec602a43a7fb84f9491fdafe287624, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: b2ec602a43a7fb84f9491fdafe287624, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
