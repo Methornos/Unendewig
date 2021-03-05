@@ -4,12 +4,15 @@ using UnityEngine.UI;
 
 public class CommandHandler : MonoBehaviour
 {
-    [SerializeField]
+    [Header("Managers"), SerializeField]
+    private QuickAccess _quickAccess = default;
+
+    [Space, Header("Components"), SerializeField]
     private GameObject _item = default;
     [SerializeField]
     private RectTransform _commandsContainer = default;
     [SerializeField]
-    private InputField _inputCommand;
+    private InputField _inputCommand = default;
 
     private Commands Commands = default;
 
@@ -30,9 +33,10 @@ public class CommandHandler : MonoBehaviour
     {
         try
         {
-            FormatCommand();
             InvokeCommand(CommandName, null);
-            CreateMessage();
+            CreateMessage(CommandText);
+            _quickAccess.SaveLastCommand(CommandName);
+            _inputCommand.text = string.Empty;
         }
         catch
         {
@@ -46,16 +50,15 @@ public class CommandHandler : MonoBehaviour
         CommandName = CommandName.ToLower();
     }
 
-    private void CreateMessage()
+    public void CreateMessage(string name)
     {
         GameObject newItem = Instantiate(_item, _commandsContainer);
-        newItem.GetComponentInChildren<Text>().text = CommandText;
-        _inputCommand.text = string.Empty;
+        newItem.GetComponentInChildren<Text>().text = name;
     }
 
-    private void InvokeCommand(string name, object[] args)
+    public void InvokeCommand(string name, object[] args)
     {
-        MethodInfo command = Commands.GetType().GetMethod(CommandName);
+        MethodInfo command = Commands.GetType().GetMethod(name);
         command.Invoke(Commands, null);
     }
 }

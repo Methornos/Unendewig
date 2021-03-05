@@ -11,8 +11,28 @@ public class Commands : MonoBehaviour
         _handler = GetComponent<CommandHandler>();
     }
 
-    public void attack()
+    public void Attack()
     {
         _handler.CommandText = "You: Attacked kogo blyat";
+    }
+
+    public void Sleep()
+    {
+        _handler.CommandText = "For You: Son is useless";
+    }
+
+    public void Walk()
+    {
+        _handler.CommandText = "You: Walk ne ptica";
+    }
+
+    public void Stay()
+    {
+        _handler.CommandText = "You: You stay like a boss";
+    }
+
+    public void Feed()
+    {
+        _handler.CommandText = "You: Feed good boich one time";
     }
 }
