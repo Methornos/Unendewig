@@ -2,10 +2,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CommandHandler : MonoBehaviour
+public class CommandHandler : MonoBehaviour, IMessaging
 {
     [Header("Managers"), SerializeField]
     private QuickAccess _quickAccess = default;
+    [SerializeField]
+    private CommandResponder _responder = default;
 
     [Space, Header("Components"), SerializeField]
     private GameObject _item = default;
@@ -29,6 +31,7 @@ public class CommandHandler : MonoBehaviour
     public void SetCommandName()
     {
         CommandName = _inputCommand.text;
+        _responder.CommandName = _inputCommand.text;
     }
 
     public void SendCommand()

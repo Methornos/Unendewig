@@ -1,18 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Reflection;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CommandResponder : MonoBehaviour
+public class CommandResponder : MonoBehaviour, IMessaging
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject _item = default;
+    [SerializeField]
+    private RectTransform _commandsContainer = default;
+
+    public string CommandName = default;
+
+    public void Respond()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CreateMessage(string name)
     {
-        
+        GameObject newItem = Instantiate(_item, _commandsContainer);
+        newItem.GetComponentInChildren<Text>().text = name;
     }
 }
