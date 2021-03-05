@@ -13,6 +13,8 @@ public class CommandHandler : MonoBehaviour
     private RectTransform _commandsContainer = default;
     [SerializeField]
     private InputField _inputCommand = default;
+    [SerializeField]
+    private Animation _warning = default;
 
     private Commands Commands = default;
 
@@ -36,18 +38,12 @@ public class CommandHandler : MonoBehaviour
             InvokeCommand(CommandName, null);
             CreateMessage(CommandText);
             _quickAccess.SaveLastCommand(CommandName);
-            _inputCommand.text = string.Empty;
         }
         catch
         {
-            
+            Warning();
         }
-    }
-
-    private void FormatCommand()
-    {
-        CommandName = CommandName.Trim();
-        CommandName = CommandName.ToLower();
+        _inputCommand.text = string.Empty;
     }
 
     public void CreateMessage(string name)
@@ -60,5 +56,10 @@ public class CommandHandler : MonoBehaviour
     {
         MethodInfo command = Commands.GetType().GetMethod(name);
         command.Invoke(Commands, null);
+    }
+
+    private void Warning()
+    {
+        _warning.Play();
     }
 }
