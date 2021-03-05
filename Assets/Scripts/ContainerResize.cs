@@ -34,7 +34,7 @@ public class ContainerResize : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
-        if(_self.sizeDelta.y <= 240) _commandObjects.SetActive(false);
+        if(_self.sizeDelta.y <= 370) _commandObjects.SetActive(false);
         else _commandObjects.SetActive(true);
 
         _self.sizeDelta = new Vector2(0, eventData.position.y);
@@ -45,13 +45,15 @@ public class ContainerResize : MonoBehaviour, IPointerDownHandler, IDragHandler,
     {
         if (eventData.position.y >= _limitLine.anchoredPosition.y / 2 + _screenOffset)
         {
-            _container.sizeDelta = new Vector2(0, 1440);
-            _self.sizeDelta = new Vector2(0, 480);
+            _container.sizeDelta = new Vector2(0, 1520);
+            _self.sizeDelta = new Vector2(0, 400);
+            _commandObjects.SetActive(true);
         }
         else
         {
             _container.sizeDelta = new Vector2(0, 1840);
             _self.sizeDelta = new Vector2(0, 80);
+            _commandObjects.SetActive(false);
         }
     }
 }
