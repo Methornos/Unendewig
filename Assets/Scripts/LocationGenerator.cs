@@ -12,10 +12,10 @@ public class LocationGenerator : MonoBehaviour
         _path = GetComponent<Path>();
     }
 
-    public void GenerateLocation()
+    public void GenerateLocation(Vector2 nextPosition)
     {
         string[] sides = GenerateSides();
-        Location location = new Location(sides);
+        Location location = new Location(sides, nextPosition);
         _path.AddLocation(location);
         _lastId++;
     }
