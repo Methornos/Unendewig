@@ -6,8 +6,6 @@ public class CommandHandler : MonoBehaviour, IMessaging
 {
     [Header("Managers"), SerializeField]
     private QuickAccess _quickAccess = default;
-    [SerializeField]
-    private CommandResponder _responder = default;
 
     [Space, Header("Components"), SerializeField]
     private GameObject _item = default;
@@ -19,6 +17,7 @@ public class CommandHandler : MonoBehaviour, IMessaging
     private Animation _warning = default;
 
     private Commands Commands = default;
+    private CommandResponder _responder = default;
 
     public string CommandName = default;
     public string CommandText = default;
@@ -26,12 +25,13 @@ public class CommandHandler : MonoBehaviour, IMessaging
     private void Awake()
     {
         Commands = GetComponent<Commands>();
+        _responder = GetComponent<CommandResponder>();
     }
 
     public void SetCommandName()
     {
         CommandName = _inputCommand.text;
-        _responder.CommandName = _inputCommand.text;
+        _responder.RespondName = _inputCommand.text;
     }
 
     public void SendCommand()
@@ -41,6 +41,7 @@ public class CommandHandler : MonoBehaviour, IMessaging
             InvokeCommand(CommandName, null);
             CreateMessage(CommandText);
             _quickAccess.SaveLastCommand(CommandName);
+            _responder.Respond();
         }
         catch
         {
@@ -59,6 +60,13 @@ public class CommandHandler : MonoBehaviour, IMessaging
     {
         MethodInfo command = Commands.GetType().GetMethod(name);
         command.Invoke(Commands, null);
+    }
+
+    public void QuickCommand(string name)
+    {
+        InvokeCommand(name, null);
+        CreateMessage(CommandText);
+        _responder.Respond();
     }
 
     private void Warning()

@@ -12,16 +12,18 @@ public class ContainerResize : MonoBehaviour, IPointerDownHandler, IDragHandler,
     private GameObject _commandObjects = default;
 
     private RectTransform _self = default;
+    private Animation _containerAnimation = default;
 
     private Vector2 _screenSize = default;
 
     private float _pressedPosition = 0;
-    
+
     private int _screenOffset = 0;
 
     private void Awake()
     {
         _self = GetComponent<RectTransform>();
+        _containerAnimation = _container.GetComponent<Animation>();
 
         _screenSize = new Vector2(Screen.width, Screen.height);
         _screenOffset = (int)((_screenSize.y - 1920) / 2);
@@ -34,7 +36,7 @@ public class ContainerResize : MonoBehaviour, IPointerDownHandler, IDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
-        if(_self.sizeDelta.y <= 370) _commandObjects.SetActive(false);
+        if (_self.sizeDelta.y <= 370) _commandObjects.SetActive(false);
         else _commandObjects.SetActive(true);
 
         _self.sizeDelta = new Vector2(0, eventData.position.y);
@@ -46,12 +48,14 @@ public class ContainerResize : MonoBehaviour, IPointerDownHandler, IDragHandler,
         if (eventData.position.y >= _limitLine.anchoredPosition.y / 2 + _screenOffset)
         {
             _container.sizeDelta = new Vector2(0, 1520);
+            _container.localScale = new Vector3(1, 1, 1);
+            _container.gameObject.SetActive(true);
             _self.sizeDelta = new Vector2(0, 400);
             _commandObjects.SetActive(true);
         }
         else
         {
-            _container.sizeDelta = new Vector2(0, 1840);
+            _containerAnimation.Play();
             _self.sizeDelta = new Vector2(0, 80);
             _commandObjects.SetActive(false);
         }

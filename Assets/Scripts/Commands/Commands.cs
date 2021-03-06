@@ -35,4 +35,9 @@ public class Commands : MonoBehaviour
     {
         _handler.CommandText = "You: Feed good boich one time";
     }
+
+    public void Go()
+    {
+
+    }
 }

@@ -9,9 +9,5 @@ public class QuickAccessItem : MonoBehaviour
 
     public string CommandName = string.Empty;
 
-    public void CallCommand()
-    {
-        _handler.InvokeCommand(CommandName, null);
-        _handler.CreateMessage(_handler.CommandText);
-    }
+    public void CallCommand() => _handler.QuickCommand(CommandName);
 }
