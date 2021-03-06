@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class CommandHandler : MonoBehaviour, IMessaging
@@ -38,7 +37,7 @@ public class CommandHandler : MonoBehaviour, IMessaging
     {
         try
         {
-            InvokeCommand(CommandName, null);
+            Commands.Command(CommandName);
             CreateMessage(CommandText);
             _quickAccess.SaveLastCommand(CommandName);
             _responder.Respond();
@@ -56,15 +55,9 @@ public class CommandHandler : MonoBehaviour, IMessaging
         newItem.GetComponentInChildren<Text>().text = name;
     }
 
-    public void InvokeCommand(string name, object[] args)
-    {
-        MethodInfo command = Commands.GetType().GetMethod(name);
-        command.Invoke(Commands, null);
-    }
-
     public void QuickCommand(string name)
     {
-        InvokeCommand(name, null);
+        Commands.Command(name);
         CreateMessage(CommandText);
         _responder.Respond();
     }
